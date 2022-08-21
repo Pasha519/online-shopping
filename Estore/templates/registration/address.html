@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Address{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock css %}
+
+
+
+{% block content %}
+{% if address %}
+<div class="jumbotron">
+    <div class="card">
+        <h2 class="text-center">Address:</h2>
+        <div class="card-body">
+            <h4>{{address.customer.username|title}}</h4>
+            <span>
+                {{address.address|title}}<br>
+                {{address.mobile}}<br>
+                {{address.city}}<br>
+                {{address.postal_code}}
+                </span>
+            </div>
+    </div>
+</div>
+ {% else %}
+    <h1 class="text-center" style="color:red;padding-top:10px;margin-left:100px">Update Address in  'Account Details'.</h1>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,26 @@
+.jumbotron {
+    float: right;
+    width: 50%;
+    margin-top: 50px;
+    margin-right: 250px;
+    margin-bottom: 50px;
+    background-color: ghostwhite;
+}
+
+.jumbotron .card {
+    width: 500px;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+}
+
+.jumbotron .card .card-body img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    margin-left: 150px;
+}
+
+.jumbotron .card .card-footer {
+    padding-left: 10px;
+}

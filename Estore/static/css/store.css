@@ -1,0 +1,135 @@
+.container {
+    float: left;
+    width: 70%;
+    margin-left: 10px;
+    /*background-color: gainsboro;*/
+}
+
+.container .row {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.card-header {
+    background-color: rgb(132, 109, 189);
+    color: white;
+}
+
+.card-footer {
+    background-color: rgb(236, 254, 72);
+}
+
+.card-footer h4 {
+    padding-top: 15px;
+}
+
+.card-footer a {
+    padding-top: 10px;
+}
+
+.category {
+    float: right;
+    width: 27%;
+    background-color: bisque;
+    margin-top: 55px;
+    margin-right: 10px;
+}
+
+.category .card .card-body h4 {
+    padding-left: 15px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.category .card .card-body ul button {
+    font-size: larger;
+    font-weight: bold;
+    color: blue;
+    background-color: ghostwhite;
+    text-decoration: none;
+}
+
+.about {
+    float: right;
+    width: 27%;
+    background-color: bisque;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.about .card .card-body {
+    background-color: bisque;
+}
+
+.about .card .card-body h4 {
+    color: red;
+    padding-left: 100px;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.about .card .card-body img {
+    margin-left: 120px;
+    width: 70px;
+    height: 70px;
+    margin-top: 10px;
+    border-radius: 50px;
+}
+
+.about .card .card-body span {
+    color: blue;
+}
+
+body {
+    background-color: lightblue;
+}
+
+.customer {
+    background-color: cornsilk;
+    float: right;
+    width: 27%;
+    height: 320px;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+.customer .card {
+    width: 370px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.customer .card .card-body h4 {
+    font-weight: bold;
+    padding-left: 70px;
+    color: red;
+}
+
+.customer .card .card-body span {
+    color: blue;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.customer .card .card-body img {
+    width: 100px;
+    height: 100px;
+    margin-left: 100px;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.paginator {
+    font-size: larger;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-left: 350px;
+    text-decoration: none;
+}
+
+.paginator span a {
+    text-decoration: none;
+}

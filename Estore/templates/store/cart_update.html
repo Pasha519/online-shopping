@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Cart Update{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/cart_update.css' %}">{% endblock css %}
+
+{% block content %}
+<div class="category">
+  <div class="card">
+    <div class="card-body">
+      <h4>Categories</h4>
+      <ul class="list-group list-group-flush">
+        <a href="/store" style="text-decoration:none"><button type="button" class="list-group-item list-group-item-action" aria-current="true">All</button></a>
+        {% for category in categories %}
+        <a href="/{{category.id}}/category" style="text-decoration:none"><button type="button" class="list-group-item list-group-item-action" aria-current="true">{{category.name|title}}</button></a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  </div>
+
+
+
+
+<div class="container">
+    <h3 class="text-center">Cart Items Update</h3>
+    <div class="items">
+        {% for cart in carts %}
+        <img src="{{cart.product.image.url}}" style="width:70px;height:70px">
+       <div class="data">
+        <form method="POST">
+            {% csrf_token %}
+        <input hidden type="text" name="cart_id" value="{{cart.id}}">
+           <span>Product:&emsp;{{cart.product.name}}</span><br>
+           <span>Price:&emsp;&emsp;Rs.{{cart.product.price|intcomma}}</span><br>
+           <span>Quantity:&nbsp;<input type="number" name="quantity" value="{{cart.quantity}}" id="quantity"></span><br>
+           <span>Size:&emsp;&emsp;
+               <select name="size">
+                   <option value="s">S</option>
+                   <option value="m">M</option>
+                   <option value="l">L</option>
+                   <option value="xl">XL</option>
+                   </select>
+           </span><br>
+        <button type="submit" class="btn btn-primary">Update</button><br>
+        </form>
+           </div><br><br>
+        {% endfor %}
+        </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success active">
+        <h4 class="text-center">{{message|title}}</h4>
+        </div>
+    {% endfor %}
+    {% endif %}
+    </div><br><br>
+
+
+{% endblock content %}

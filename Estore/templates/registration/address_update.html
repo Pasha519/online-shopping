@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Address Update{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="jumbotron">
+
+
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "info" %}
+    <div class="alert alert-danger">
+        <h4 class="text-center">{{message|title}}</h4>
+        </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+
+
+    <div class="card">
+        <br>
+        <h4 class="text-center">Address:</h4>
+        <div class="card-body">
+
+            <!--first row-->
+            <form method ="POST">
+                {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="First name" name="first_name">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Last name" name="last_name">
+                </div>
+                </div>
+                <br>
+            <!--second row-->
+             <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Email" name="email">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Mobile" name="mobile">
+                </div>
+                </div>
+                <br>
+            <div class="col">
+                <input type="text" class="form-control"  placeholder="House no Village Mandal City" name="address">
+                </div>
+                <br>
+            <!--third row-->
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="City" name="city">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Postal Code" name="postal_code">
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-danger" style="margin-left:160px">Update Address</button>
+            </form>
+            </div>
+        </div>
+    <!--second card-->
+    <div class="card">
+        <br>
+        <h4 class="text-center">Password Change</h4>
+        <div class="card-body">
+
+            <form method="POST" action="/password_change/">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <input type="text" class="form-control"  placeholder="Currenr Password, Remember.?">
+                </div>
+                <br><br>
+                <!--second row-->
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="New Password" name="password1">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Confirm Password" name="password2">
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-danger" style="margin-left:160px">Save Changes</button>
+           </form>
+
+        </div>
+    </div><br>
+<!--card close-->
+</div>
+{% endblock content %}

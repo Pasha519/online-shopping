@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}Regsiter Page{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock css %}
+
+
+
+{% block content %}
+<div class="container">
+    
+    
+    {% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "warning" %}
+    <div class="alert alert-info">
+        <h5>{{message|title}}</h5>
+    </div>
+    {% else %}
+    <div class="alert alert-danger">
+        <h5>{{message|title}}</h5>
+    </div>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+
+
+
+    <div class="form-group">
+        <form method ="POST">
+            {% csrf_token %}
+            <br>
+            <h3 class="text-center">Register Page<h3> 
+                {{form}}
+                <button type="submit" class="btn btn-primary active">Regsiter</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

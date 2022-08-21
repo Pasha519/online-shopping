@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Product details{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/details.css' %}">{% endblock css %}
+
+
+{% block content %}
+
+
+<!--categories-->
+<div class="category">
+  <div class="card">
+    <div class="card-body">
+      <h4>Categories</h4>
+      <ul class="list-group list-group-flush">
+        <a href="/store" style="text-decoration:none"><button type="button" class="list-group-item list-group-item-action" aria-current="true">All</button></a>
+        {% for category in categories %}
+        <a href="/{{category.id}}/category" style="text-decoration:none"><button type="button" class="list-group-item list-group-item-action" aria-current="true">{{category.name|title}}</button></a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  </div>
+
+
+<div class="jumbotron">
+    <div class="card">
+        <div class="card-body">
+            <img src="{{product.image.url}}">
+            </div>
+        </div>
+    <div class="details">
+        <h4>{{product.name|title}}</h4><hr>
+        <h5>Price&emsp;&nbsp;&nbsp;:&nbsp;{{product.price|intcomma}}/-</h5>
+        <h5>Quantity:&nbsp;
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <button type="button" class="btn btn-outline-danger active" id="b1"><i class="fa-solid fa-minus"></i></button>
+                <button type="button" class="btn btn-outline-dark active" id="b2">1</button>
+                <button type="button" class="btn btn-outline-danger active" id="b3"><i class="fa-solid fa-plus"></i></button>
+            </div>
+        </h5>
+        <h5>Size:&emsp;&nbsp;&nbsp;:&nbsp;
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <button type="button" class="btn btn-outline-danger" id="s1">S</button>
+                <button type="button" class="btn btn-outline-danger" id="s2">M</button>
+                <button type="button" class="btn btn-outline-danger" id="s3">L</button>
+                <button type="button" class="btn btn-outline-danger" id="s4">XL</button>
+            </div>
+        </h5><br><br>
+        <form method="POST" action="/order_create/">
+            {% csrf_token %}
+            <input hidden type="text" name="quantity" id="quantity" value="1">
+            <input hidden type="text" name="size" id="size" value="s">
+            <input hidden type="text" name="product_id" value="{{product.id}}">
+            <a href="/cart_create"><button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Add To Cart</button></a>&emsp;
+            <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-bag-shopping"></i>&nbsp;Buy Now</button>
+        </form>
+        </div>
+</div>
+
+{% endblock content %}
+
+<!--js for product details-->
+{% block js %}
+<script src="{% static 'js/product_details.js' %}"></script>
+{% endblock js %}

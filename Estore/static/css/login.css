@@ -1,0 +1,28 @@
+.container {
+    margin-top: 100px;
+    margin-left: 500px;
+    width: 500px;
+    background-color: aliceblue;
+    margin-bottom: 50px;
+}
+
+.container .form-group {
+    width: 250px;
+    margin-left: 100px;
+}
+
+.container .form-group form h3 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.container .form-group form button {
+    margin-left: 90px;
+    margin-bottom: 50px;
+    margin-top: 10px;
+}
+
+body {
+    background-color: rgb(32, 45, 32);
+}

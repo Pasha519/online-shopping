@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Wish List{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+{% if message.tags == "info" %}
+<div class="alert alert-info">
+    <h4 class="text-center">{{message|title}}</h4>
+    </div>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+
+
+<div class="container">
+    <div class="float-left">
+    {% if sent %}
+        <table class="table table-bordered" id="table">
+            <thead>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Size</th>
+                <th>Remove</th>
+                </thead>
+            {% for cart in carts %}
+            <tr>
+                <td>
+                    <a href="/{{cart.product.id}}/details">
+                    <img src="{{cart.product.image.url}}" style="width:70px;height:70px"></a>&nbsp;
+                    <a href="/{{cart.product.id}}/details" style="text-decoration: none;">{{cart.product.name|title}}</a>
+                    </td>
+
+                <td id="td1">Rs.{{cart.product.price}}</td>
+
+                <td id="td2">
+                <button type="button" class="btn btn-outline-dark active" id="b2">{{cart.quantity}}</button>
+                </td>
+
+                <td id="td4">Rs.{{cart.total|intcomma}}</td>
+                <td  id="td3">
+                    <button type="button" class="btn btn-outline-dark active" id="b2">{{cart.size|title}}</button>
+                </td>
+
+                </td>
+                <td id="td5">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input hidden type="text" name="cart_id" value="{{cart.id}}">
+                        <button type="submit" class="btn btn-outline-danger"><i class="fa-solid fa-trash" style="font-size:25px"></i></button>
+                    </form>
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    </div>
+    
+    <div class="float-right">
+        {% if sent %}
+        <div class="card">
+            <div class="card-body">
+                <form method="#">
+                    <input type="text" name="coupen" placeholder="Enter Coupon">
+                    <button type="submit" class="btn btn-outline-warning">Apply Code</button>
+                    </form>
+                </div>
+            <div class="card-footer">
+                <h3>Cart Summary</h3>
+                <h5>Sub Total&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Rs.{{total_price|intcomma}}</h5>
+                <h5>Shipping Cost&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Rs.1</h5><hr>
+                <h3>Grand Total&emsp;&emsp;&emsp;&nbsp;Rs.{{total_price|intcomma|add:"1"}}</h3><hr>
+                </div>
+            <div class="card-title">
+                <a href="/cart_update"><button type="button" class="btn btn-outline-danger">Update Cart</button></a>&emsp;&emsp;&emsp;&emsp;
+                <a href="/cart_checkout"><button type="button" class="btn btn-outline-success active">Checkout</button></a>
+                </div>
+        </div>
+    {% endif %}
+    </div>
+{% endblock content %}

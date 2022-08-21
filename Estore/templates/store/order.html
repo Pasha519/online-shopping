@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load countries %}
+{% block title %}Order{% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/order.css' %}">{% endblock css %}
+
+
+{% block content %}
+<div class="container">
+    {% if sent %}
+    <div class="data">
+        <br><h3>Billing Address:</h3><br>
+        <div class="card">
+            <div class="card-body">
+                <span>
+                    Name:&nbsp;{{order.customer.username|title}}<br>
+                    Address:&nbsp;{{order.address|title}}<br>
+                    Mobile:&nbsp;{{order.mobile}}<br>
+                    City:&nbsp;{{order.city|title}}<br>
+                    Postal Code:&nbsp;{{order.postal_code}}
+                </span>
+                </div>
+            </div><br><br>
+    </div>
+    {% else %}
+    <div class="form-group">
+        <form method="POST" action="/order_save/">
+            <h3>Billing Address:</h3>
+            {% csrf_token %}
+            {{form}}
+           {% get_countries as countries %}
+           <select class="form-control mb-2" placeholder="Country">
+               {% for country in countries %}
+               <option value="{{ country.name }}" name="country" required>{{ country.name }}</option>
+               {% endfor %}
+               </select>
+            <button type="submit" class="btn btn-primary active" style="width:150px;margin-left:150px;margin-top:20px">Submit</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="product_details">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="text-center">Product details</h3><hr>
+                
+                <span>
+                Image:&emsp;&emsp;&emsp;&emsp;&emsp;<img src="{{product.image.url}}" class="text-center" style="width:50px;height:50px"><hr>
+                Product:&emsp;&emsp;&emsp;{{product.name|title}}<hr>
+                Price&emsp;:&emsp;&emsp;&emsp;&emsp;&emsp;Rs.{{product.price|intcomma}} /-<hr>
+                Quantity & Size:&nbsp;&emsp;&emsp;{{quantity}} & {{size|title}}<hr>
+                Shipping Cost:&emsp;&emsp;&emsp;Rs.1<hr>
+                Total:&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Rs.{{total_price|intcomma}} /-<hr>
+                </span>
+                </div>
+            </div>
+        </div>
+
+{% if sent %}
+    <div class="payment"><br>
+        <h4>&emsp;Payment methods</h4><br>
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="/order_item/">
+                    {% csrf_token %}
+                    <input type="radio" id="gpay" name="payment" value="gpay" class="form-check-input">
+                    <label for="gpay">Gpay</label><br>
+                    <input type="radio" id="phonepay" name="payment" value="phone pay" class="form-check-input">
+                    <label for="phonepay">Phone Pay</label><br>
+                     <input type="radio" id="cash" name="payment" value="cash on delivery" class="form-check-input" checked>
+                     <label for="javascript">Cash On Delivery</label> <br><br>
+                     <button type="submit" class="btn btn-danger active">Place Order</button>
+                     </form>
+                </div>
+            </div>
+            <br>
+{% endif %}
+{% endblock content %}

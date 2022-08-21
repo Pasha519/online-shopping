@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Orders{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="jumbotron">
+    {% if sent %}
+    <table class="table table-bordered border-primary" id="table">
+        <thead>
+            <th>S.no</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+            </thead>
+            <tr>
+                {% for order in orders %}
+                <td>{{forloop.counter}}</td>
+                <td>
+                    <img src="{{order.product.image.url}}" style="width:75px;height:75px;border-radius:50px;border-color:yellow">
+                </td>
+                <td id="td2">Rs.{{order.total|intcomma}}</td>
+                <td id="td3">{{order.order.created}}</td>
+                <td id="td4">{{order.status}}</td>
+                <td id="td5">
+                    <a href="/{{order.product.id}}/details">
+                        <button type="button" class="btn btn-outline-primary">View</button>
+                        </a>
+                    </td>
+                {% endfor %}
+                </tr>
+        </table>
+        {% endif %}
+    </div>
+{% endblock content %}

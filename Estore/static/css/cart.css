@@ -1,0 +1,59 @@
+.container .float-left #table {
+    width: 800px;
+    margin-top: 100px;
+    margin-left: 30px;
+    margin-bottom: 300px;
+    color: white;
+    border-color: yellow;
+    border-width:5px;
+}
+
+.container .float-left #table thead th {
+    text-align: center;
+}
+
+.container .float-left tr #td1,
+#td2,
+#td3,
+#td4,
+#td7 {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.container .float-left tr #td5,
+#td6 {
+    text-align: center;
+    padding-top: 25px;
+}
+
+.container .float-right {
+    padding-top: 100px;
+    margin-right: 5px;
+}
+
+.container .float-right .card .card-body input {
+    height: 38px;
+    margin-right: 5px;
+}
+
+.container .float-right .card .card-footer {
+    font-size: large;
+    font-weight: bold;
+    background-color: rgb(215, 215, 226);
+    color: rgb(26, 7, 244);
+}
+
+.container .float-right .card .card-title {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.container .float-right .card .card-title button {
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+body {
+    background: url(../images/cart.png)no-repeat center/cover;
+}

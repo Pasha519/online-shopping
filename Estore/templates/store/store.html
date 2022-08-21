@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Store{% endblock title %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/store.css' %}">{% endblock css %}
+
+{% block content %}
+<br>
+<div class="container mt-2 mb-3">
+  <div class="row">
+    {% for product in products %}
+    <div class="col-lg-4 my-4">
+      <div class="card shadow" style="width:250px">
+        <div class="card-header">
+          <h4 class="text-center">{{product.name|title}}</h4>
+          </div>
+          <a href="/{{product.id}}/details"><img src="{{product.image.url}}" style="height:300px;width:100%"></a>
+          <div class="card-footer">
+          <h4 class="float-left">Rs.{{product.price|intcomma}}</h4>
+          <a href="/{{product.id}}/details" class="float-right"><button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Buy Now</button></a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% include 'store/pagination.html' with page=products %}
+  </div>
+  <br><br>
+  
+</div>
+
+<!--float right-->
+<div class="category">
+  <div class="card">
+    <div class="card-body">
+      <h4>Categories</h4>
+      <ul class="list-group list-group-flush">
+        <a href="/store" style="text-decoration:none"><button type="button" class="list-group-item list-group-item-action" aria-current="true">All</button></a>
+        {% for category in categories %}
+        <a href="/{{category.id}}/category" style="text-decoration:none"><button type="button" class="list-group-item list-group-item-action" aria-current="true">{{category.name|title}}</button></a>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  </div>
+  <!--category-->
+
+  <!--about-->
+  <div class="about">
+    <div class="card">
+      <div class="card-body">
+        <h4>About Us</h4>
+          <img src="{% static 'images/pic.jpg' %}"><br><br>
+        <span>
+          &emsp;&emsp;&emsp;&emsp;&emsp;Sheik Jameel Pasha<br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;Python/Django developer<br>
+          &emsp;&emsp;&emsp;&emsp;&emsp;Pasha Software Solutions<br>
+        </span>
+        </div>
+      </div>
+    </div>
+
+<!--customer-->
+{% if customer %}
+ <div class="customer">
+    <div class="card">
+      <div class="card-body">
+        <h4>About Customer</h4>
+        {% if customer.image %}
+          <a href="/update_picture"><img src="{{customer.image.url}}"></a>
+          {% else %}
+          <img src="{% static 'images/logo.png' %}">
+        {% endif %}
+          <br><span>Name:&nbsp;{{customer.customer.first_name|title}}&nbsp;{{customer.customer.last_name|title}}<br>
+          Mobile:&nbsp;{{customer.mobile}}<br>
+          Address:&nbsp;{{customer.address|title}}</span>      
+        </div>
+      </div>
+    </div>
+    {% endif %}
+{% endblock content %}

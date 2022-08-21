@@ -1,0 +1,49 @@
+.container {
+    background-color: aliceblue;
+    width: 60%;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+.container h3 {
+    padding-top: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.container .items {
+    padding-top: 20px;
+}
+
+.container .items img {
+    width: 50px;
+    height: 50px;
+    margin-left: 400px;
+}
+
+.container .items .data {
+    padding-left: 320px;
+    padding-top: 20px;
+}
+
+.container .items .data button {
+    margin-top: 20px;
+    width: 250px;
+}
+
+.container .items .data span input {
+    width: 40px;
+}
+
+.category {
+    margin-top: 40px;
+    float: right;
+    width: 30%;
+    padding-top: 10px;
+    margin-right: 20px;
+}
+
+.category .card .card-body {
+    background-color: rgb(89, 89, 151);
+    color: white;
+}

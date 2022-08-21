@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'registration/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Personal{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/account.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="card">
+        <div class="card-body">
+            {% if user.image %}
+            <a href="/update_picture"><img src="{{user.image.url}}"></a>
+            {% else %}
+            <a href="/update_picture"><img src="{% static 'images/logo.png' %}"></a>
+            {% endif %}
+            </div>
+            <div class="card-footer">
+            <span>Name:&emsp;{{user.customer.username|title}}<br>
+                Mobile:&emsp;{{user.mobile}}<br>
+                Address:&nbsp;{{user.address|title}}<br>
+                City:&emsp;{{user.city|title}}<br>
+                Pincode:&emsp;{{user.postal_code|title}}
+                </div>
+        </div>
+    </div>
+{% endblock content %}

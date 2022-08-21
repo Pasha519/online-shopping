@@ -1,0 +1,55 @@
+.container {
+    float: left;
+    background-color: whitesmoke;
+    margin-top: 100px;
+    width: 50%;
+    margin-left: 150px;
+    margin-bottom: 30px;
+}
+
+.container .form-group form {
+    padding-top: 100px;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.product_details {
+    float: right;
+    width: 20%;
+    border-radius: 5px;
+    background-color: lightblue;
+    margin-top: 100px;
+    margin-right: 200px;
+    margin-bottom: 50px;
+}
+
+.product_details .card {
+    margin-top: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.payment {
+    width: 765px;
+    margin-left: 150px;
+    margin-top: 500px;
+    margin-bottom: 300px;
+    background-color: rgb(227, 228, 223);
+}
+
+.payment .card {
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+}
+
+.payment .card .card-body form button {
+    margin-left: 600px;
+}
+
+body {
+    background: url(../images/order.png)no-repeat center/cover;
+}

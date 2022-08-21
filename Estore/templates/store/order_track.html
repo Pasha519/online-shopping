@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}Order Track{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/track.css' %}">
+{% endblock css %}
+
+{% block content %}
+<br>
+{% if sent %}
+<h3 style="text-align:center;">Thank You For Your Order  <strong>{{request.user|title}}</strong> !</h3> <br><br>
+<div class="container">
+    <header class="card-header" style="text-align:center;"> My Orders / Tracking </header>
+    {% for order in ordered_items %}
+    <article class="card">
+        <div class="card-body">
+            <ul class="row" style="margin-left:20px;margin-top:20px;">
+                <li class="col-md-4">
+                  <figure class="itemside mb-3">
+                    
+                      <div class="aside"><img src="{{order.product.image.url}}" class="img-sm border"></div>
+                      <figcaption class="info align-self-center">
+
+                          <p class="title"><strong>Name : </strong>{{order.product.name|capfirst}} <br> <strong>Description : </strong>{{order.product.description|title}}</p> <span><strong>Price : </strong>Rs.{{order.price|intcomma}}/-</span><br><span><strong>Items : </strong>{{order.quantity}}</span><br>
+                          <span><strong>Size: </strong>{{order.size|title}}</span><br>
+                          <span><strong>Total:</strong>Rs.{{order.total|intcomma}}/-</span>
+
+                      </figcaption>
+                  </figure>
+                </li>
+                <li class="col-md-4">
+                    <div class="col"> <strong>Shipment Address:</strong> <br>
+                    {{order.order.address|title}}
+                    </div>
+                </li>
+                <li class="col-md-4">
+                    <div class="col"> <strong>Status:<br></strong>{{order.status}} </div> <br>
+                    <h4><a style="text-decoration:none; color:blue;" href="#" >Download Invoice</a></h4>
+                </li>
+            </ul>
+            <hr>
+
+            <div class="track">
+                {%if order.status == 'Pending' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%elif order.status == 'Order Confirmed' %}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%elif order.status == 'Out for Delivery'%}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step "> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%else%}
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-frown-o"></i> </span> <span class="text">Order Pending</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-check"></i> </span> <span class="text"> Order Confirmed</span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-truck"></i> </span> <span class="text"> On the way </span> </div>
+                <div class="step active"> <span class="icon"> <i style="padding-top:5px; padding-right:20px;" class="fa fa-home"></i> </span> <span class="text">Delivered</span> </div>
+                {%endif%}
+            </div>
+
+        </div>
+    </article><br>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock content %}

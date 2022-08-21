@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+      <style>
+          
+.container {
+    float: left;
+    margin-top: 50px;
+    background-color: lightcyan;
+    margin-bottom: 50px;
+    width: 400px;
+    margin-left: 10px;
+}
+
+.container .list-group {
+    width: 350px;
+    padding-top: 30px;
+    padding-bottom: 60px;
+}
+          </style>
+    </head>
+    <body>
+       {% load static %}
+<div class="container">
+    <div class="list-group">
+       {% url 'profile' as profile %}
+        <a href="/profile" class="list-group-item list-group-item-action {% if request.path == profile %}active{% endif %}"><i class="fa-solid fa-gauge-high"></i>&nbsp;Dash Board</a>
+        {% url 'orders' as orders%}
+        <a href="/orders" class="list-group-item list-group-item-action {% if request.path == orders %}active{% endif %}"><i class="fa-solid fa-bag-shopping"></i>&nbsp;Orders</a>
+        {% url 'address' as address %}
+        <a href="/address" class="list-group-item list-group-item-action {% if request.path == address %}active{% endif %}"><i class="fa-solid fa-user-gear"></i>&nbsp;Address</a>
+        {% url 'address_update' as address_update%}
+        <a href="/address_update" class="list-group-item list-group-item-action {% if request.path == address_update %}active {% endif %}"><i class="fa-solid fa-address-card"></i>&nbsp;Account Details</a>
+        {% url 'logout' as logout %}
+        <a href="/logout" class="list-group-item list-group-item-action {% if request.path == logout%}active {% endif %}"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;Logout</a>
+        </div>
+    </div> 
+
+    </body>
+</html>
